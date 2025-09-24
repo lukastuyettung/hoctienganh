@@ -29,4 +29,8 @@ const vocabQuestions = [
   { q: "'I am fine' nghĩa là gì?", answers: ["Tôi khỏe", "Tôi mệt", "Tôi buồn"], correct: 0, explain: "'I am fine' = Tôi khỏe." },
   { q: "'long time no see' nghĩa là gì?", answers: ["Lâu rồi không gặp", "Không bao giờ gặp lại", "Không muốn gặp"], correct: 0, explain: "'Long time no see' = Lâu rồi không gặp." },
   { q: "'what time is it?' nghĩa là gì?", answers: ["Bây giờ là mấy giờ?", "Bạn ở đâu?", "Bạn làm gì?"], correct: 0, explain: "'What time is it?' = Bây giờ là mấy giờ?" },
-  { q: "'how old are you?' nghĩa là gì?", answers: ["Bạn bao nhiêu tuổi?", "Bạn tên gì?", "Bạn học lớp mấy?"], correct: 0, explain: "'How old are you?' = Bạn bao
+  { q: "'how old are you?' nghĩa là gì?", answers: ["Bạn bao nhiêu tuổi?", "Bạn tên gì?", "Bạn học lớp mấy?"], correct: 0, explain: "'How old are you?' = Bạn bao nhiêu tuổi?" },
+  { q: "'I miss you' nghĩa là gì?", answers: ["Anh nhớ em", "Anh giận em", "Anh quên em rồi"], correct: 0, explain: "'I miss you' = Anh nhớ em." }
+];
+
+export default vocabQuestions;
