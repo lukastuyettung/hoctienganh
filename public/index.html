@@ -46,11 +46,11 @@
     }
     .chibi.left {
       right: 100%;
-      margin-right: -40px; /* sát container */
+      margin-right: -40px;
     }
     .chibi.right {
       left: 100%;
-      margin-left: -40px; /* sát container */
+      margin-left: -40px;
     }
     h1 {
       color: #6a0dad;
@@ -107,16 +107,31 @@
   <script type="module">
     import vocabQuestions from './vocab.js';
 
-    let currentIndex = 0;
+    let currentQuestion = null;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
 
     function loadQuestion() {
       document.getElementById("result").innerText = "";
       document.getElementById("nextBtn").style.display = "none";
-      let q = vocabQuestions[currentIndex];
-      document.getElementById("question").innerText = q.q;
+
+      // Random câu hỏi
+      currentQuestion = vocabQuestions[Math.floor(Math.random() * vocabQuestions.length)];
+
+      // Shuffle đáp án
+      let shuffledAnswers = shuffle(
+        currentQuestion.answers.map((ans, i) => ({ ans, i }))
+      );
+
+      // Render câu hỏi
+      document.getElementById("question").innerText = currentQuestion.q;
+
+      // Render đáp án
       let answersDiv = document.getElementById("answers");
       answersDiv.innerHTML = "";
-      q.answers.forEach((ans, i) => {
+      shuffledAnswers.forEach(({ ans, i }) => {
         let btn = document.createElement("button");
         btn.innerText = ans;
         btn.onclick = () => checkAnswer(i);
@@ -125,19 +140,17 @@
     }
 
     function checkAnswer(i) {
-      let q = vocabQuestions[currentIndex];
-      if (i === q.correct) {
-        document.getElementById("result").innerText = "✅ Đúng rồi! " + q.explain;
+      if (i === currentQuestion.correct) {
+        document.getElementById("result").innerText = "✅ Đúng rồi! " + currentQuestion.explain;
         document.getElementById("result").style.color = "green";
       } else {
-        document.getElementById("result").innerText = "❌ Sai! " + q.explain;
+        document.getElementById("result").innerText = "❌ Sai! " + currentQuestion.explain;
         document.getElementById("result").style.color = "red";
       }
       document.getElementById("nextBtn").style.display = "inline-block";
     }
 
     window.nextQuestion = function() {
-      currentIndex = (currentIndex + 1) % vocabQuestions.length;
       loadQuestion();
     }
 
