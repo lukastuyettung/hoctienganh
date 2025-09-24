@@ -496,7 +496,7 @@ const vocabQuestions = [
   { q: "'happy' nghĩa là gì?", answers: ["Hạnh phúc", "Buồn", "Giận dữ"], correct: 0, explain: "'Happy' = Hạnh phúc." },
   { q: "'sad' nghĩa là gì?", answers: ["Buồn", "Vui", "Giận"], correct: 0, explain: "'Sad' = Buồn." },
   { q: "'angry' nghĩa là gì?", answers: ["Giận dữ", "Vui vẻ", "Hạnh phúc"], correct: 0, explain: "'Angry' = Giận dữ." },
-  { q: "'funny' nghĩa là gì?", answers: ["Buồn cười", "Buồn bã", "Giận dữ"], correct: 0, explain: "'Funny' = Buồn cười." }
+  { q: "'funny' nghĩa là gì?", answers: ["Buồn cười", "Buồn bã", "Giận dữ"], correct: 0, explain: "'Funny' = Buồn cười." },
 
 
 
