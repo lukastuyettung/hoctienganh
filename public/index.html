@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Game Học Tiếng Anh</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 20px;
+    }
+    header button {
+      background: #6a0dad;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .game-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .game-container {
+      position: relative;
+      background: white;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .chibi {
+      position: absolute;
+      top: 40px;
+      width: 150px;
+    }
+    .chibi.left {
+      right: 100%;
+      margin-right: -40px; /* sát container */
+    }
+    .chibi.right {
+      left: 100%;
+      margin-left: -40px; /* sát container */
+    }
+    h1 {
+      color: #6a0dad;
+    }
+    .answers button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #f0f0f0;
+      transition: background 0.2s;
+    }
+    .answers button:hover {
+      background: #e0c3fc;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .next-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="window.location.href='https://homepage-gray-omega.vercel.app/'">🏠 Trang chủ</button>
+  </header>
+
+  <div class="game-wrapper">
+    <div class="game-container">
+      <img src="coha-left.png" alt="Cô Hà Chibi Trái" class="chibi left" />
+      <h1>🎯 Học Tiếng Anh</h1>
+      <div id="question"></div>
+      <div class="answers" id="answers"></div>
+      <div class="result" id="result"></div>
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Câu tiếp</button>
+      <img src="coha-right.png" alt="Cô Hà Chibi Phải" class="chibi right" />
+    </div>
+  </div>
+
+  <script type="module">
+    import vocabQuestions from './vocab.js';
+
+    let currentIndex = 0;
+
+    function loadQuestion() {
+      document.getElementById("result").innerText = "";
+      document.getElementById("nextBtn").style.display = "none";
+      let q = vocabQuestions[currentIndex];
+      document.getElementById("question").innerText = q.q;
+      let answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      q.answers.forEach((ans, i) => {
+        let btn = document.createElement("button");
+        btn.innerText = ans;
+        btn.onclick = () => checkAnswer(i);
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(i) {
+      let q = vocabQuestions[currentIndex];
+      if (i === q.correct) {
+        document.getElementById("result").innerText = "✅ Đúng rồi! " + q.explain;
+        document.getElementById("result").style.color = "green";
+      } else {
+        document.getElementById("result").innerText = "❌ Sai! " + q.explain;
+        document.getElementById("result").style.color = "red";
+      }
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    window.nextQuestion = function() {
+      currentIndex = (currentIndex + 1) % vocabQuestions.length;
+      loadQuestion();
+    }
+
+    // Load câu đầu tiên
+    loadQuestion();
+  </script>
+</body>
+</html>
